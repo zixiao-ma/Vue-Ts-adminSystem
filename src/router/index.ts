@@ -1,6 +1,6 @@
-import {createRouter, createWebHashHistory, RouteRecordRaw} from 'vue-router'
-import Login from '@/views/login/index.vue'
-import HomeLayout from '@/layout/index.vue'
+import {createRouter, createWebHashHistory, RouteRecordRaw} from 'vue-router';
+import Login from '@/views/login/index.vue';
+import HomeLayout from '@/layout/index.vue';
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -12,13 +12,14 @@ const routes: Array<RouteRecordRaw> = [
         path: '/',
         name: 'Home',
         component: HomeLayout,
-        children: []
+        children: [],
+        redirect: '/system/user'
     }
-]
+];
 
 const router = createRouter({
     history: createWebHashHistory(),
     routes
-})
+});
 
-export default router
+export default router;
