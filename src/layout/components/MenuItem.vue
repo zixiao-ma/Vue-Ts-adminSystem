@@ -1,13 +1,14 @@
 <template>
   <div v-for="(item,index) in itemData" :key="index">
-    <a-menu-item v-if="item.children&&item.children.length<=0" :key="index+''" @click="$router.push(item.path)">
-      <pie-chart-outlined/>
+    <a-menu-item v-if="item.children&&item.children.length<=0" :key="item.meta.key" @click="$router.push(item.path)">
+
       <span>{{ item.meta.title }}</span>
     </a-menu-item>
-    <a-sub-menu v-else :key="item.path">
+    <a-sub-menu v-else :key="item.meta.key">
       <template #title>
                 <span>
-                  <team-outlined/>
+                 <setting-outlined v-if="item.meta.title==='系统管理'"/>
+                  <team-outlined v-if="item.meta.title==='审批管理'"/>
                     <span>{{ item.meta.title }}</span>
                 </span>
       </template>
@@ -18,8 +19,8 @@
 
 <script setup>
 import {
-  PieChartOutlined,
-  TeamOutlined
+  SettingOutlined
+  , TeamOutlined
 } from '@ant-design/icons-vue';
 import {defineProps} from 'vue';
 

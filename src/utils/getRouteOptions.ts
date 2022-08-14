@@ -5,7 +5,8 @@ type routeType = {
     redirect?: string,
     meta?: {
         title: string,
-        icon: string | undefined
+        icon: string | undefined,
+        key?: string
     },
     children: Array<object>
 }
@@ -30,7 +31,8 @@ export function getRouters(router: Array<object>) {
 
                 meta: {
                     title: item.menuName,
-                    icon: item.icon
+                    icon: item.icon,
+                    key: item._id
                 },
                 children: []
             };
@@ -47,6 +49,6 @@ export function getRouters(router: Array<object>) {
         }
 
     });
-   
+
     return result;
 }

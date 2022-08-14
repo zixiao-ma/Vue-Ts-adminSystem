@@ -5,12 +5,9 @@
       <m-menu></m-menu>
     </a-layout-sider>
     <a-layout>
-      <a-layout-header style="background: #fff; padding: 0"/>
+      <m-header></m-header>
       <a-layout-content style="margin: 0 16px">
-        <a-breadcrumb style="margin: 16px 0">
-          <a-breadcrumb-item>User</a-breadcrumb-item>
-          <a-breadcrumb-item>Bill</a-breadcrumb-item>
-        </a-breadcrumb>
+        <tags-view></tags-view>
         <div :style="{ padding: '24px', background: '#fff', minHeight: '360px' }">
           <router-view></router-view>
         </div>
@@ -23,7 +20,9 @@
 </template>
 <script lang="ts" setup>
 import MMenu from './components/Menu.vue';
+import MHeader from './components/Header.vue';
 import {ref} from 'vue';
+import TagsView from '@/layout/components/TagsView.vue';
 
 const collapsed = ref<boolean>(false);
 
@@ -35,11 +34,14 @@ const collapsed = ref<boolean>(false);
   background: rgba(255, 255, 255, 0.3);
 }
 
-.site-layout .site-layout-background {
-  background: #fff;
+
+/*.ant-layout-sider {
+  background: #03a9f4 !important;
 }
 
-[data-theme='dark'] .site-layout .site-layout-background {
-  background: #141414;
-}
+::v-deep .ant-layout-sider-trigger {
+  background: #03a9f4 !important;
+  color: #fff !important;
+  border-top: 1px solid #ddd;
+}*/
 </style>

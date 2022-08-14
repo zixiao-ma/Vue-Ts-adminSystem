@@ -45,7 +45,6 @@ instance.interceptors.response.use(
         if (code === 500001) {
             store.commit('user/logout');
             message.error('token过期请重新登录！');
-            router.push({name: 'Login'});
             return;
         } else {
             message.error(msg);

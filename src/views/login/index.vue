@@ -1,10 +1,10 @@
 <template>
-  <div class="login_container h-100 d-flex justify-content-center align-items-center bg-light">
-    <div class="login_box d-flex">
+  <div class="login_container">
+    <div class="login_box">
       <div class="login_left">
         <h1 class="title">欢迎登录</h1>
       </div>
-      <div class="login_form bg-white d-flex justify-content-center align-items-center flex-md-column">
+      <div class="login_form">
 
         <h2>后台管理系统</h2>
         <a-form
@@ -53,30 +53,30 @@
 <script lang="ts" setup>
 import {onMounted, reactive, ref} from 'vue';
 import {UserOutlined, LockOutlined} from '@ant-design/icons-vue';
-import {loginType} from "@/typeing/user";
-import {useStore} from "vuex";
-import {message} from "ant-design-vue";
-import {useRouter} from "vue-router";
+import {loginType} from '@/typeing/user';
+import {useStore} from 'vuex';
+import {message} from 'ant-design-vue';
+import {useRouter} from 'vue-router';
 
-const store = useStore()
-const router = useRouter()
-const loading = ref<boolean>(false)
-const loginButtonText = ref<string>('立即登录')
+const store = useStore();
+const router = useRouter();
+const loading = ref<boolean>(false);
+const loginButtonText = ref<string>('立即登录');
 const formState = reactive<loginType>({
   userName: '',
-  userPwd: '',
+  userPwd: ''
 });
 const onFinish = async (values: any) => {
   loading.value = true;
   loginButtonText.value = '登录中...';
   try {
-    const res = await store.dispatch('user/login', formState)
+    const res = await store.dispatch('user/login', formState);
     if (res) {
-      await router.push({name: 'Home'})
-      message.success('登录成功！')
+      await router.push({name: 'Home'});
+      message.success('登录成功！');
     }
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
   loading.value = false;
   loginButtonText.value = '立即登录';
@@ -91,6 +91,10 @@ const onFinishFailed = (errorInfo: any) => {
 .login_container {
   background: url("../../../public/bgc.jpeg") no-repeat;
   background-size: cover;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .login_box {
@@ -98,6 +102,7 @@ const onFinishFailed = (errorInfo: any) => {
   height: 400px;
   overflow: hidden;
   border-radius: 10px;
+  display: flex;
 
   & > div {
     flex: 1;
@@ -120,7 +125,11 @@ const onFinishFailed = (errorInfo: any) => {
 
 .login_form {
   box-sizing: border-box;
-
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .ant-form {

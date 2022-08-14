@@ -7,6 +7,5 @@ import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
 import './permission';
 
-
 const app = createApp(App);
 app.use(store).use(router).use(Antd).mount('#app');

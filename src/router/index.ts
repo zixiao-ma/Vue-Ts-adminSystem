@@ -12,8 +12,22 @@ const routes: Array<RouteRecordRaw> = [
         path: '/',
         name: 'Home',
         component: HomeLayout,
-        children: [],
-        redirect: '/system/user'
+        children: [
+            {
+                path: '/welcome',
+                name: 'welcome',
+                component: () => import('../views/welcome/index.vue'),
+                meta: {
+                    title: '首页',
+                    icon: 'none',
+                    key: 'shouye'
+                }
+            }
+        ],
+        meta: {
+            title: '首页'
+        },
+        redirect: '/welcome'
     }
 ];
 

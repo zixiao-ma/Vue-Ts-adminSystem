@@ -3,6 +3,8 @@ import {userStoreType, userActionType, loginType, loginResponse, PermissionReque
 import {LStorage} from '@/utils/storage';
 import {ADMIN_TOKEN_KEY, ADMIN_USERINFO_KEY} from '@/utils/PublicVariables';
 import {PermissionApi} from '@/api/permission';
+import router from '@/router';
+import {message} from 'ant-design-vue';
 
 export default {
     namespaced: true,
@@ -23,17 +25,17 @@ export default {
             state.actionList = params.actionList;
             state.menuList = params.menuList;
         },
-        logout() {
+        logout(state: userStoreType) {
+            state.token = '';
             LStorage.delete(ADMIN_TOKEN_KEY);
             LStorage.delete(ADMIN_USERINFO_KEY);
+            router.push({name: 'Login'});
         }
     },
     actions: {
         async login({commit}: userActionType, loginModel: loginType) {
             const res = await loginApi(loginModel);
             await commit('setUserInfo', res);
-            const response = await PermissionApi();
-            await commit('setPermission', response);
             return res;
         },
         async getPermission({commit}: userActionType) {

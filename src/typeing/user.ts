@@ -48,19 +48,11 @@ interface loginType {
     userPwd: string;
 }
 
-/**
- * @interface storeModelType
- * store的user模块接口模型
- */
-interface storeModelType {
-    user: userStoreType;
-}
 
 export {
     userStoreType,
     userActionType,
     loginType,
     loginResponse,
-    storeModelType,
     PermissionRequest
 };
